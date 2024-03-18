@@ -60,9 +60,15 @@ const AddEditExpensesPage = () => {
           <Grid container spacing={2} alignItems="flex-end">
             {expenses.map((expense) => (
               <Grid item xs={12} key={expense.expense_type}>
-                {expense.expense_type === "coffee" && <FaCoffee />}
-                {expense.expense_type === "food" && <FaUtensils />}
-                {expense.expense_type === "alcohol" && <FaBeer />}
+                {expense.expense_type === "coffee" && (
+                  <FaCoffee style={{ color: "brown" }} />
+                )}
+                {expense.expense_type === "food" && (
+                  <FaUtensils style={{ color: "green" }} />
+                )}
+                {expense.expense_type === "alcohol" && (
+                  <FaBeer style={{ color: "goldenrod" }} />
+                )}
                 <TextField
                   label={
                     expense.expense_type.charAt(0).toUpperCase() +
@@ -99,7 +105,7 @@ const AddEditExpensesPage = () => {
                 type="submit"
                 fullWidth
               >
-                Add expenses
+                Add expense
               </Button>
             </Grid>
           </Grid>

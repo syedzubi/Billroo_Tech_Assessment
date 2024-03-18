@@ -6,22 +6,28 @@ import { FaBeer, FaCoffee, FaUtensils, FaQuestionCircle } from "react-icons/fa";
 
 interface ExpenseSummaryData {
   expense_type: string;
-  average_amount: string; // Updated: Store average_amount as a string
+  average_amount: string;
   recent_amount: string;
 }
 
+const defaultExpenses: ExpenseSummaryData[] = [
+  { expense_type: "coffee", average_amount: "0", recent_amount: "0" },
+  { expense_type: "food", average_amount: "0", recent_amount: "0" },
+  { expense_type: "alcohol", average_amount: "0", recent_amount: "0" },
+];
+
 const iconMap = {
-  coffee: <FaCoffee />,
-  food: <FaUtensils />,
-  alcohol: <FaBeer />,
+  coffee: <FaCoffee style={{ color: "brown" }} />,
+  food: <FaUtensils style={{ color: "green" }} />,
+  alcohol: <FaBeer style={{ color: "goldenRod" }} />,
   default: <FaQuestionCircle />,
 };
 
 const ExpenseSummary = () => {
-  const [expenses, setExpenses] = useState<ExpenseSummaryData[]>([]);
+  const [expenses, setExpenses] =
+    useState<ExpenseSummaryData[]>(defaultExpenses);
 
   useEffect(() => {
-    // Fetch the expense summary from the backend
     const fetchExpenses = async () => {
       try {
         const response = await fetch(
@@ -37,19 +43,6 @@ const ExpenseSummary = () => {
 
     fetchExpenses();
   }, []);
-
-  // Check if there are any expenses
-  if (expenses.length === 0) {
-    return (
-      <Card sx={{ maxWidth: 300, margin: "auto", mt: 5 }}>
-        <CardContent>
-          <Typography textAlign="center">
-            No expenses data available for this period.
-          </Typography>
-        </CardContent>
-      </Card>
-    );
-  }
 
   return (
     <Card sx={{ maxWidth: 300, margin: "auto", mt: 5 }}>
@@ -77,14 +70,17 @@ const ExpenseSummary = () => {
                 )}
                 <Typography
                   variant="body2"
-                  color={
-                    parseFloat(expense.recent_amount) >
-                    parseFloat(expense.average_amount)
-                      ? "error"
-                      : "success"
-                  }
+                  sx={{
+                    fontWeight: "bold",
+                    mx: 1,
+                    color:
+                      parseFloat(expense.recent_amount) >
+                      parseFloat(expense.average_amount)
+                        ? "error.main"
+                        : "success.main",
+                    fontFamily: '"Comic Sans MS", cursive, sans-serif',
+                  }}
                 >
-                  {/* Calculate and format percentage difference */}
                   {Math.abs(
                     parseFloat(expense.recent_amount) -
                       parseFloat(expense.average_amount)

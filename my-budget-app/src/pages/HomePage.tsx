@@ -38,7 +38,7 @@ const HomePage = () => {
             </Button>
           </Grid>
         </Grid>
-        <ExpenseSummary />
+        {!areAllExpensesZero && <ExpenseSummary />}
       </Box>
     </Container>
   );

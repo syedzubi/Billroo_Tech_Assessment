@@ -9,7 +9,7 @@ const pool = promise_1.default.createPool({
     connectionLimit: 10,
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
-    password: 'PeRson1ified#',
+    password: '',
     database: process.env.DB_NAME,
 });
 exports.default = pool;
