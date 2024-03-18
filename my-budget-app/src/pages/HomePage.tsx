@@ -1,11 +1,8 @@
-// src/pages/HomePage.tsx
-
-import React, { useEffect, useState } from "react";
+import React from "react";
 import ExpenseSummary from "../components/ExpenseSummary";
 import { Button, Container, Typography, Box, Grid } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useExpenses } from "../context/ExpensesContext";
-import exp from "constants";
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -14,10 +11,6 @@ const HomePage = () => {
   const handleAddClick = () => {
     navigate("/edit-expenses");
   };
-
-  useEffect(() => {
-    console.log("expenses", expenses);
-  }, []);
 
   return (
     <Container maxWidth="md">
@@ -39,7 +32,7 @@ const HomePage = () => {
               color="primary"
               onClick={handleAddClick}
             >
-              {expenses ? "Edit expenses" : "Add expenses"}
+              {expenses.length > 0 ? "Edit expenses" : "Add expenses"}
             </Button>
           </Grid>
         </Grid>

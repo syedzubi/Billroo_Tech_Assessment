@@ -38,6 +38,19 @@ const ExpenseSummary = () => {
     fetchExpenses();
   }, []);
 
+  // Check if there are any expenses
+  if (expenses.length === 0) {
+    return (
+      <Card sx={{ maxWidth: 300, margin: "auto", mt: 5 }}>
+        <CardContent>
+          <Typography textAlign="center">
+            No expenses data available for this period.
+          </Typography>
+        </CardContent>
+      </Card>
+    );
+  }
+
   return (
     <Card sx={{ maxWidth: 300, margin: "auto", mt: 5 }}>
       <CardContent>

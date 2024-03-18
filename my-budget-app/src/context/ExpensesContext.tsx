@@ -11,9 +11,16 @@ interface Expense {
   amount: number;
 }
 
+const defaultExpenses: Expense[] = [
+  { expense_type: "coffee", amount: 0 },
+  { expense_type: "food", amount: 0 },
+  { expense_type: "alcohol", amount: 0 },
+];
+
 interface ExpensesContextType {
   expenses: Expense[];
   fetchTodaysExpenses: () => void;
+  setExpenses: React.Dispatch<React.SetStateAction<Expense[]>>;
 }
 
 const ExpensesContext = createContext<ExpensesContextType | undefined>(
@@ -29,8 +36,7 @@ export const useExpenses = () => {
 };
 
 export const ExpensesProvider = ({ children }: { children: ReactNode }) => {
-  const [expenses, setExpenses] = useState<Expense[]>([]);
-
+  const [expenses, setExpenses] = useState<Expense[]>(defaultExpenses);
   const fetchTodaysExpenses = async () => {
     try {
       const response = await fetch(
@@ -51,7 +57,9 @@ export const ExpensesProvider = ({ children }: { children: ReactNode }) => {
   }, []);
 
   return (
-    <ExpensesContext.Provider value={{ expenses, fetchTodaysExpenses }}>
+    <ExpensesContext.Provider
+      value={{ expenses, setExpenses, fetchTodaysExpenses }}
+    >
       {children}
     </ExpensesContext.Provider>
   );

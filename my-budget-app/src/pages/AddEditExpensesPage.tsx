@@ -9,52 +9,11 @@ import {
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { FaBeer, FaCoffee, FaUtensils } from "react-icons/fa";
-
-interface Expense {
-  expense_type: "coffee" | "food" | "alcohol";
-  amount: number;
-}
+import { useExpenses } from "../context/ExpensesContext";
 
 const AddEditExpensesPage = () => {
   const navigate = useNavigate();
-  const [expenses, setExpenses] = useState<Expense[]>([
-    { expense_type: "coffee", amount: 1 },
-    { expense_type: "food", amount: 1 },
-    { expense_type: "alcohol", amount: 1 },
-  ]);
-
-  const fetchTodaysExpenses = async () => {
-    try {
-      const response = await fetch(
-        "http://localhost:3000/api/expenses/check-today"
-      );
-      if (!response.ok) {
-        throw new Error("Failed to fetch today's expenses");
-      }
-      const data = await response.json();
-
-      const filteredExpenses = data.filter((expense: Expense) =>
-        ["coffee", "food", "alcohol"].includes(expense.expense_type)
-      );
-
-      if (filteredExpenses.length === 0) {
-        setExpenses([
-          { expense_type: "coffee", amount: 1 },
-          { expense_type: "food", amount: 1 },
-          { expense_type: "alcohol", amount: 1 },
-        ]);
-      } else {
-        setExpenses(filteredExpenses);
-      }
-    } catch (error) {
-      console.error("Error fetching today's expenses:", error);
-    }
-  };
-
-  // Fetch today's expenses when the component mounts
-  useEffect(() => {
-    fetchTodaysExpenses();
-  }, []);
+  const { expenses, setExpenses } = useExpenses();
 
   // Update expense state
   const handleExpenseChange = (type: string, newAmount: number) => {
@@ -86,12 +45,9 @@ const AddEditExpensesPage = () => {
       if (!response.ok) {
         throw new Error("Failed to save expenses");
       }
-
-      // On successful save, redirect back
       navigate("/");
     } catch (error) {
       console.error("Error saving expenses:", error);
-      // Display an error message to the user (not implemented here)
     }
   };
 
