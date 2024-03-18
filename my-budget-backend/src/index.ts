@@ -4,7 +4,7 @@ import {RowDataPacket } from 'mysql2';
 import cors from 'cors';
 
 const app = express();
-const PORT = 3000; // You can choose any available port
+const PORT = 3001; // You can choose any available port
 
 app.use(cors());
 app.use(express.json());

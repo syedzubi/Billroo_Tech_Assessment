@@ -8,6 +8,8 @@ const HomePage = () => {
   const navigate = useNavigate();
   const { expenses } = useExpenses();
 
+  const areAllExpensesZero = expenses.every((expense) => expense.amount === 0);
+
   const handleAddClick = () => {
     navigate("/edit-expenses");
   };
@@ -32,7 +34,7 @@ const HomePage = () => {
               color="primary"
               onClick={handleAddClick}
             >
-              {expenses.length > 0 ? "Edit expenses" : "Add expenses"}
+              {areAllExpensesZero ? "Add expenses" : "Edit expenses"}
             </Button>
           </Grid>
         </Grid>
