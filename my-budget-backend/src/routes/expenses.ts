@@ -1,17 +1,11 @@
 import express from 'express';
-import pool from '../database'; // Adjust the path as necessary
+import * as expensesController from '../controllers/expenses';
 
 const router = express.Router();
 
-// Fetch all expenses
-router.get('/', async (req, res) => {
-  try {
-    const [expenses] = await pool.query('SELECT * FROM expenses');
-    res.json(expenses);
-  } catch (error) {
-    console.error('Failed to fetch expenses:', error);
-    res.status(500).json({ message: 'Error fetching expenses' });
-  }
-});
+router.get('/check-today', expensesController.getExpensesForToday);
+router.get('/', expensesController.getAllExpenses);
+router.get('/summary', expensesController.getExpenseSummary);
+router.post('/', expensesController.addExpense);
 
 export default router;

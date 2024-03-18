@@ -16,7 +16,7 @@ const express_1 = __importDefault(require("express"));
 const database_1 = __importDefault(require("./database"));
 const cors_1 = __importDefault(require("cors"));
 const app = (0, express_1.default)();
-const PORT = 3000; // You can choose any available port
+const PORT = 3001; // You can choose any available port
 app.use((0, cors_1.default)());
 app.use(express_1.default.json());
 //Fetch expense_types from today 

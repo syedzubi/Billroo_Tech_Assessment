@@ -40,7 +40,7 @@ export const ExpensesProvider = ({ children }: { children: ReactNode }) => {
   const fetchTodaysExpenses = async () => {
     try {
       const response = await fetch(
-        "http://localhost:3000/api/expenses/check-today"
+        "http://localhost:3001/api/expenses/check-today"
       );
       if (!response.ok) {
         throw new Error("Failed to fetch today's expenses");

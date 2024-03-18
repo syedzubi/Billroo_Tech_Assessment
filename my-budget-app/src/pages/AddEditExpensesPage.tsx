@@ -15,7 +15,6 @@ const AddEditExpensesPage = () => {
   const navigate = useNavigate();
   const { expenses, setExpenses } = useExpenses();
 
-  // Update expense state
   const handleExpenseChange = (type: string, newAmount: number) => {
     setExpenses((prevExpenses) =>
       prevExpenses.map((expense) =>
@@ -36,7 +35,7 @@ const AddEditExpensesPage = () => {
     event.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:3000/api/expenses", {
+      const response = await fetch("http://localhost:3001/api/expenses", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(expenses),

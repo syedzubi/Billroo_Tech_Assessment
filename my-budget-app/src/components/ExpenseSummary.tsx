@@ -25,7 +25,7 @@ const ExpenseSummary = () => {
     const fetchExpenses = async () => {
       try {
         const response = await fetch(
-          "http://localhost:3000/api/expenses/summary"
+          "http://localhost:3001/api/expenses/summary"
         );
         if (!response.ok) throw new Error("Failed to fetch");
         const data: ExpenseSummaryData[] = await response.json(); // Type the expected data
