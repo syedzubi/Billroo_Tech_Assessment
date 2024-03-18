@@ -29,29 +29,6 @@ My Budget App is a full-stack application that helps users track their weekly ex
 
 Project Structure:
 
-my-budget-app/
-├── frontend/ # Front-end (React)
-│ ├── package.json
-│ ├── src/
-│ │ ├── components/
-│ │ ├── context/
-│ │ ├── pages/  
-│ │ ├── App.tsx
-│ │ └── ...  
-│ └── tsconfig.json  
-├── backend/ # Back-end (Node.js)
-│ ├── src/
-│ │ ├── controllers/
-│ │ ├── db/
-│ │ ├── routes/
-│ │ ├── app.ts
-│ │ ├── server.ts  
-│ │ └── ...
-│ ├── package.json
-│ ├── tsconfig.json
-│ └── .env
-└── README.md
-
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
